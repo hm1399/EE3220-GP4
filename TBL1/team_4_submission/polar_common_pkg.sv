@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 package polar_common_pkg;
 
     localparam int N = 64;       // Codeword length
