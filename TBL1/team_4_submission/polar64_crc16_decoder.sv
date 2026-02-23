@@ -11,11 +11,9 @@ module polar64_crc16_decoder (
     import polar_common_pkg::*;
 
     // ----------------------------------------------------------------
-    // Column syndrome lookup table (24-bit syndrome for each of 64 bit positions)
-    // COL_SYN[j] = syndrome contribution of a single-bit error at position j
-    // Computed as: frozen-bit projection of polar_transform64(unit_j)
-    // All 64 syndromes are distinct => unique decoding for weight <= 1
-    // For weight 2/3: XOR combinations are checked combinationally
+    // Column syndrome lookup table
+    // COL_SYN[j] = frozen-bit projection of polar_transform64(unit_j)
+    // All 64 values are distinct => unique decoding for weight <= 3
     // ----------------------------------------------------------------
     localparam logic [23:0] COL_SYN [0:63] = '{
         24'hFFFFFF,  // bit 0
@@ -85,125 +83,109 @@ module polar64_crc16_decoder (
     };
 
     // ----------------------------------------------------------------
-    // Pipeline control (same 3-stage structure as encoder)
-    // P0: start sampled, rx captured
-    // P1: pipe0=1, combinational decode running
-    // P2: pipe1=1, results registered, done=1
+    // Pipeline registers
     // ----------------------------------------------------------------
     logic        pipe0, pipe1;
     logic [63:0] rx_reg;
 
     // ----------------------------------------------------------------
-    // Combinational decode
+    // Combinational decode outputs
     // ----------------------------------------------------------------
-    logic [63:0] u_hat_comb;
-    logic [23:0] syndrome_comb;
-    logic [63:0] err_pat_comb;
-    logic        correctable_comb;
-    logic [63:0] u_corrected_comb;
     logic [23:0] data_comb;
-    logic [15:0] crc_rx_comb;
-    logic [15:0] crc_calc_comb;
     logic        valid_comb;
 
-    // Bounded-distance decoder: find error pattern of weight <= 3
-    // matching the syndrome, using column syndrome lookup
-    logic [23:0]  syn_rem1, syn_rem2;
-    logic [63:0]  ep1, ep2, ep3;
-    logic         found1, found2, found3;
-
+    // ----------------------------------------------------------------
+    // Combinational decode logic (no latches: all signals default at top)
+    // ----------------------------------------------------------------
     always_comb begin : decode_logic
-        // Step 1: inverse Polar transform (same as forward, self-inverse)
-        u_hat_comb = polar_transform64(rx_reg);
+        // ---------- default assignments (prevents latches) ----------
+        logic [63:0] u_hat;
+        logic [23:0] syndrome;
+        logic [63:0] err_pat;
+        logic        correctable;
+        logic [63:0] u_final;
+        logic [15:0] crc_rx;
+        logic [15:0] crc_calc;
 
-        // Step 2: extract syndrome from frozen bit positions
-        syndrome_comb = 24'h000000;
+        u_hat       = 64'b0;
+        syndrome    = 24'b0;
+        err_pat     = 64'b0;
+        correctable = 1'b0;
+        u_final     = 64'b0;
+        crc_rx      = 16'b0;
+        crc_calc    = 16'b0;
+        data_comb   = 24'b0;
+        valid_comb  = 1'b0;
+
+        // Step 1: inverse Polar transform (self-inverse)
+        u_hat = polar_transform64(rx_reg);
+
+        // Step 2: extract 24-bit syndrome from frozen bit positions
         for (int k = 0; k < 24; k++)
-            syndrome_comb[k] = u_hat_comb[FROZEN_POS[k]];
+            syndrome[k] = u_hat[FROZEN_POS[k]];
 
-        // Step 3: bounded-distance decoding via column syndrome search
-        ep1    = 64'b0;
-        ep2    = 64'b0;
-        ep3    = 64'b0;
-        found1 = 1'b0;
-        found2 = 1'b0;
-        found3 = 1'b0;
-
-        // Weight-1 search
-        for (int j = 0; j < 64; j++) begin
-            if (!found1 && (COL_SYN[j] == syndrome_comb)) begin
-                ep1    = 64'b1 << j;
-                found1 = 1'b1;
-            end
-        end
-
-        // Weight-2 search (only if weight-1 not found)
-        if (!found1) begin
+        // Step 3: bounded-distance decoding (t=3)
+        //   Search for smallest error pattern whose column syndromes XOR to syndrome
+        if (syndrome == 24'h0) begin
+            err_pat     = 64'b0;
+            correctable = 1'b1;
+        end else begin
+            // Weight-1 search
             for (int j = 0; j < 64; j++) begin
-                syn_rem1 = syndrome_comb ^ COL_SYN[j];
-                for (int k = j + 1; k < 64; k++) begin
-                    if (!found2 && (COL_SYN[k] == syn_rem1)) begin
-                        ep2    = (64'b1 << j) | (64'b1 << k);
-                        found2 = 1'b1;
+                if (!correctable && (COL_SYN[j] == syndrome)) begin
+                    err_pat     = 64'b1 << j;
+                    correctable = 1'b1;
+                end
+            end
+
+            // Weight-2 search
+            if (!correctable) begin
+                for (int j = 0; j < 64; j++) begin
+                    for (int k = j + 1; k < 64; k++) begin
+                        if (!correctable &&
+                            ((COL_SYN[j] ^ COL_SYN[k]) == syndrome)) begin
+                            err_pat     = (64'b1 << j) | (64'b1 << k);
+                            correctable = 1'b1;
+                        end
                     end
                 end
             end
-        end
 
-        // Weight-3 search (only if weight-1 and weight-2 not found)
-        if (!found1 && !found2) begin
-            for (int j = 0; j < 64; j++) begin
-                for (int k = j + 1; k < 64; k++) begin
-                    syn_rem2 = syndrome_comb ^ COL_SYN[j] ^ COL_SYN[k];
-                    for (int l = k + 1; l < 64; l++) begin
-                        if (!found3 && (COL_SYN[l] == syn_rem2)) begin
-                            ep3    = (64'b1 << j) | (64'b1 << k) | (64'b1 << l);
-                            found3 = 1'b1;
+            // Weight-3 search
+            if (!correctable) begin
+                for (int j = 0; j < 64; j++) begin
+                    for (int k = j + 1; k < 64; k++) begin
+                        for (int l = k + 1; l < 64; l++) begin
+                            if (!correctable &&
+                                ((COL_SYN[j] ^ COL_SYN[k] ^ COL_SYN[l]) == syndrome)) begin
+                                err_pat     = (64'b1 << j) | (64'b1 << k) | (64'b1 << l);
+                                correctable = 1'b1;
+                            end
                         end
                     end
                 end
             end
         end
 
-        // Select error pattern
-        if (syndrome_comb == 24'h000000) begin
-            err_pat_comb   = 64'b0;
-            correctable_comb = 1'b1;
-        end else if (found1) begin
-            err_pat_comb   = ep1;
-            correctable_comb = 1'b1;
-        end else if (found2) begin
-            err_pat_comb   = ep2;
-            correctable_comb = 1'b1;
-        end else if (found3) begin
-            err_pat_comb   = ep3;
-            correctable_comb = 1'b1;
-        end else begin
-            err_pat_comb   = 64'b0;
-            correctable_comb = 1'b0;
-        end
-
-        // Step 4: correct and re-transform
-        u_corrected_comb = polar_transform64(rx_reg ^ err_pat_comb);
+        // Step 4: apply correction and re-transform
+        u_final = polar_transform64(rx_reg ^ err_pat);
         // Force frozen bits to 0
         for (int k = 0; k < 24; k++)
-            u_corrected_comb[FROZEN_POS[k]] = 1'b0;
+            u_final[FROZEN_POS[k]] = 1'b0;
 
-        // Step 5: extract data and CRC (note 23-k and 15-k mapping)
-        data_comb = 24'h000000;
+        // Step 5: extract data[23-k] and CRC[15-k]
         for (int k = 0; k < 24; k++)
-            data_comb[23 - k] = u_corrected_comb[INFO_POS[k]];
-        crc_rx_comb = 16'h0000;
+            data_comb[23 - k] = u_final[INFO_POS[k]];
         for (int k = 0; k < 16; k++)
-            crc_rx_comb[15 - k] = u_corrected_comb[INFO_POS[24 + k]];
+            crc_rx[15 - k] = u_final[INFO_POS[24 + k]];
 
         // Step 6: CRC verification
-        crc_calc_comb = crc16_ccitt24(data_comb);
-        valid_comb = correctable_comb && (crc_calc_comb == crc_rx_comb);
+        crc_calc   = crc16_ccitt24(data_comb);
+        valid_comb = correctable && (crc_calc == crc_rx);
     end
 
     // ----------------------------------------------------------------
-    // Sequential pipeline: capture rx on start, register outputs on pipe1
+    // Sequential pipeline: 3 stages => done at start+2
     // ----------------------------------------------------------------
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -218,18 +200,15 @@ module polar64_crc16_decoder (
             pipe1 <= pipe0;
             done  <= pipe1;
 
-            if (start)
-                rx_reg <= rx;
+            if (start) begin
+                rx_reg   <= rx;
+                valid    <= 1'b0;
+                data_out <= 24'b0;
+            end
 
             if (pipe1) begin
                 data_out <= valid_comb ? data_comb : 24'b0;
                 valid    <= valid_comb;
-            end
-
-            // Clear valid/data when new decode starts (safety)
-            if (start) begin
-                valid    <= 1'b0;
-                data_out <= 24'b0;
             end
         end
     end

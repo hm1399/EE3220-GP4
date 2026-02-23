@@ -45,3 +45,19 @@
   - 列 syndrome 方法：每个 codeword 位置对应唯一的冻结位 syndrome，精确匹配确定错误位置
   - transform 方向错误：v[i+j] ^= v[i+j+half] 是 F_N 转置，不能保证 dmin=8
 ---
+
+=== 2026-02-23 16:00 ===
+操作：Checkpoint 5 编译验证
+文件：polar64_crc16_decoder.sv（修复latch），team_4_submission/run_sim.sh（新建）
+提示词摘要：继续完成 Checkpoint 5 编译验证
+采纳内容：
+  - 发现 decoder always_comb 有 latch（syn_rem1/syn_rem2/err_pat_comb 等未在所有路径赋值）
+  - 修复：在 always_comb 开头用 logic 声明并赋默认值，将临时变量内联计算
+  - verilator lint-only 后：无 latch 错误，仅 TIMESCALEMOD 警告（非错误）
+  - 本机无 Vivado xsim；iverilog 12 不支持 SV packed array localparam
+  - Python 完整仿真（镜像 tb_basic.sv 逻辑）：SMOKE score = 30/30，所有 case 通过
+  - 创建 run_sim.sh 脚本供 Vivado 环境一键运行
+修改原因：
+  - always_comb 中 if(!correctable) 分支里的临时赋值导致工具推断 latch
+  - 修复方式：在块开头默认赋值，然后条件覆盖，满足组合逻辑完备赋值要求
+---
