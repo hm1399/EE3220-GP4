@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module polar64_crc16_decoder (
     input  logic        clk,
     input  logic        rst_n,
