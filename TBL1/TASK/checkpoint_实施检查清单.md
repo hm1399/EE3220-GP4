@@ -200,11 +200,11 @@ print(hex(crc16_ccitt(0xFFFFFF)))
 
 ### 2.5 验收标准
 
-- [ ] CRC 算法结果与 Python 参考实现一致
-- [ ] 初始值是 0x0000（不是 0xFFFF）
-- [ ] 处理顺序是 MSB 优先（i = 23 downto 0）
-- [ ] 反馈常量是 16'h1021（不是 17'h11021）
-- [ ] 可以在编码器和解码器中复用（同一套逻辑）
+- [x] CRC 算法结果与 Python 参考实现一致
+- [x] 初始值是 0x0000（不是 0xFFFF）
+- [x] 处理顺序是 MSB 优先（i = 23 downto 0）
+- [x] 反馈常量是 16'h1021（不是 17'h11021）
+- [x] 可以在编码器和解码器中复用（同一套逻辑）
 
 ### 2.6 产出
 
@@ -284,15 +284,15 @@ Cycle 3:  done 必须回到 0（done 是单周期脉冲）
 
 ### 3.6 验收标准
 
-- [ ] 模块名：`polar64_crc16_encoder`（精确匹配）
-- [ ] 端口名和方向与 3.2 完全一致
-- [ ] `import polar_common_pkg::*`
-- [ ] CRC 计算正确（与 Checkpoint 2 的参考一致）
-- [ ] u 向量组装：比特映射方向正确（23-k 和 15-k）
-- [ ] 蝶形变换方向正确：`v[i+j] ^= v[i+j+half]`（不是反过来）
-- [ ] done 在 start 后恰好第 2 个周期拉高，持续 1 个周期
-- [ ] 复位时 done=0, codeword=0
-- [ ] ref_encode(24'hABCDEF) 的结果与 DUT 输出一致
+- [x] 模块名：`polar64_crc16_encoder`（精确匹配）
+- [x] 端口名和方向与 3.2 完全一致
+- [x] `import polar_common_pkg::*`
+- [x] CRC 计算正确（与 Checkpoint 2 的参考一致）
+- [x] u 向量组装：比特映射方向正确（23-k 和 15-k）
+- [x] 蝶形变换方向正确：`v[i+j] ^= v[i+j+half]`（不是反过来）
+- [x] done 在 start 后恰好第 2 个周期拉高，持续 1 个周期
+- [x] 复位时 done=0, codeword=0
+- [x] ref_encode(24'hABCDEF) 的结果与 DUT 输出一致
 
 ### 3.7 产出文件
 

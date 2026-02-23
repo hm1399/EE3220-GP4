@@ -12,3 +12,18 @@
   - 实现 min_info_row_weight 函数（计算最小行重量=8）
 修改原因：这是整个项目的基础参数包，编码器、解码器和测试平台都依赖它
 ---
+
+=== 2026-02-23 14:45 ===
+操作：创建 polar64_crc16_encoder.sv（Checkpoint 3）
+文件：polar64_crc16_encoder.sv
+提示词摘要：实现 Polar 编码器，done 在 start 后恰好第 2 个周期拉高
+采纳内容：
+  - 3 级流水线控制（pipe0, pipe1, done），确保 done 在 start 采样后 +2 周期
+  - data_reg 在 start 时锁存 data_in，保证数据稳定
+  - 组合逻辑完成 CRC→build_u→蝶形变换，结果在 pipe1 时寄存到 codeword
+  - 异步低电平复位，复位时所有输出清零
+修改原因：
+  - 检查清单建议的 2 位移位寄存器只能实现 +1 周期延迟，与 tb_basic.sv 的时序检查不匹配
+  - 通过仔细追踪 pulse_start → do_encode 的时序，确认需要 pipe0→pipe1→done 三级
+  - Python 验证 ref_encode(0xABCDEF) = 0x00051313163A5830
+---

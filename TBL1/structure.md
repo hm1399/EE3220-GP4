@@ -1,15 +1,15 @@
 # 项目架构文档（自动生成，请勿手动编辑）
 
-> 最后更新：2026-02-23 14:30
+> 最后更新：2026-02-23 14:45
 
 ## 文件清单
 
 | 文件名 | 状态 | 说明 |
 | --- | --- | --- |
 | polar_common_pkg.sv | 已完成 | 共用参数包（INFO_POS, FROZEN_POS, 5个辅助函数） |
-| polar64_crc16_encoder.sv | 未开始 | Polar 编码器 |
+| polar64_crc16_encoder.sv | 已完成 | Polar 编码器 |
 | polar64_crc16_decoder.sv | 未开始 | Polar 解码器 |
-| crc.sv | 未开始 | CRC-16 模块（可选，也可集成到编码器/解码器中） |
+| crc.sv | 不需要 | CRC 已集成到 pkg 函数和编码器/解码器中 |
 | tb_basic.sv | 已提供 | 测试平台（由课程提供，不可修改） |
 
 ## INFO_POS / FROZEN_POS（当前使用的值）
@@ -30,11 +30,13 @@
 
 ## 模块：polar64_crc16_encoder
 
-- 端口列表：未实现
-- done 延迟：未实现（要求：恰好 2 周期）
-- CRC 计算方式：未确定
-- 蝶形变换实现：未确定
-- 已知问题：无（未开始）
+- 端口列表：clk, rst_n, start, data_in[23:0], done, codeword[63:0]
+- done 延迟：恰好 +2 周期（3 级流水：pipe0→pipe1→done）
+- CRC 计算方式：组合逻辑，调用 pkg 中的 crc16_ccitt24
+- 蝶形变换实现：组合逻辑，调用 pkg 中的 polar_transform64
+- 数据锁存：start 时将 data_in 寄存到 data_reg，编码基于 data_reg
+- codeword 寄存：pipe1 有效时将组合结果寄存到 codeword 输出
+- 已知问题：无
 
 ## 模块：polar64_crc16_decoder
 
@@ -49,9 +51,9 @@
 
 ## 模块：CRC（如果独立存在）
 
-- 文件名：未确定（计划集成到编码器/解码器中）
-- 实现方式：未确定
-- 接口：未确定
+- 文件名：不需要独立文件，已集成到 polar_common_pkg.sv 的 crc16_ccitt24 函数中
+- 实现方式：组合逻辑 for 循环，24 次迭代移位+条件异或
+- 接口：function crc16_ccitt24(input logic [23:0] data) → logic [15:0]
 
 ## 测试平台：tb_basic.sv
 
@@ -69,3 +71,5 @@
 | --- | --- |
 | 2026-02-22 | 初始创建，所有模块未开始 |
 | 2026-02-23 | 完成 Checkpoint 1：创建 polar_common_pkg.sv，包含位置映射和5个辅助函数 |
+| 2026-02-23 | 完成 Checkpoint 2：CRC-16 验证通过（已集成在 pkg 中） |
+| 2026-02-23 | 完成 Checkpoint 3：创建 polar64_crc16_encoder.sv，3级流水线，done @+2 |
