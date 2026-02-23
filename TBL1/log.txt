@@ -27,3 +27,21 @@
   - 通过仔细追踪 pulse_start → do_encode 的时序，确认需要 pipe0→pipe1→done 三级
   - Python 验证 ref_encode(0xABCDEF) = 0x00051313163A5830
 ---
+
+=== 2026-02-23 15:30 ===
+操作：修复 polar_transform64 方向错误 + 创建 polar64_crc16_decoder.sv（Checkpoint 4）
+文件：polar_common_pkg.sv, polar64_crc16_decoder.sv
+提示词摘要：继续完成 Checkpoint 4 实现解码器
+采纳内容：
+  - 发现 polar_transform64 方向错误：原来是 v[i+j] ^= v[i+j+half]（dmin=2），修正为 v[i+j+half] ^= v[i+j]（dmin=8）
+  - 两个文件都受影响：polar_common_pkg.sv 中修复了 polar_transform64 函数
+  - decoder 使用列 syndrome 查找表（COL_SYN[0:63]，各不相同）实现有界距离解码
+  - 权重1/2/3 错误逐级搜索，找不到匹配则 correctable=0，valid=0
+  - 3 级流水线（pipe0→pipe1→done），done 在 start 后 +2 周期拉高
+  - Python 验证：Case A/B1/B2/B3/C/D 全部通过
+修改原因：
+  - checklist 的简单 syndrome 算法只在错误完全落在冻结位时才能工作
+  - 实际单比特 codeword 翻转的 u-domain 投影同时跨越冻结位和信息位
+  - 列 syndrome 方法：每个 codeword 位置对应唯一的冻结位 syndrome，精确匹配确定错误位置
+  - transform 方向错误：v[i+j] ^= v[i+j+half] 是 F_N 转置，不能保证 dmin=8
+---

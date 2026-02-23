@@ -54,7 +54,7 @@ package polar_common_pkg;
 
     // ----------------------------------------------------------------
     // Helper function: Polar butterfly transform (no bit-reversal)
-    // v[i+j] ^= v[i+j+half]  for each stage
+    // v[i+j+half] ^= v[i+j]  for each stage  (F_N generator matrix row direction)
     // This is its own inverse (F_N^{-1} = F_N over GF(2))
     // ----------------------------------------------------------------
     function automatic logic [63:0] polar_transform64(input logic [63:0] u);
@@ -66,7 +66,7 @@ package polar_common_pkg;
             half = 1 << s;
             for (int i = 0; i < 64; i += step) begin
                 for (int j = 0; j < half; j++) begin
-                    v[i + j] = v[i + j] ^ v[i + j + half];
+                    v[i + j + half] = v[i + j] ^ v[i + j + half];
                 end
             end
         end

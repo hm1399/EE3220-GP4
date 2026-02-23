@@ -390,18 +390,18 @@ done 在 start 后 12 个时钟周期内拉高（1 周期脉冲）
 
 ### 4.7 验收标准
 
-- [ ] 模块名：`polar64_crc16_decoder`（精确匹配）
-- [ ] 端口名和方向与 4.2 完全一致
-- [ ] `import polar_common_pkg::*`
-- [ ] **Case A（0 位翻转）**：valid=1，data_out 正确还原
-- [ ] **Case B（1 位翻转）**：valid=1，data_out 正确还原
-- [ ] **Case B（2 位翻转）**：valid=1，data_out 正确还原
-- [ ] **Case B（3 位翻转）**：valid=1，data_out 正确还原
-- [ ] **Case C（4 位翻转）**：valid=0
-- [ ] **Case D（5 位翻转）**：如果 valid=1 则 data_out 必须正确（否则 valid=0）
-- [ ] done 在 start 后 12 周期内拉高，持续 1 个周期
-- [ ] 复位时 done=0, valid=0, data_out=0
-- [ ] **绝对不能出现 valid=1 但 data_out 错误的情况**
+- [x] 模块名：`polar64_crc16_decoder`（精确匹配）
+- [x] 端口名和方向与 4.2 完全一致
+- [x] `import polar_common_pkg::*`
+- [x] **Case A（0 位翻转）**：valid=1，data_out 正确还原
+- [x] **Case B（1 位翻转）**：valid=1，data_out 正确还原
+- [x] **Case B（2 位翻转）**：valid=1，data_out 正确还原
+- [x] **Case B（3 位翻转）**：valid=1，data_out 正确还原
+- [x] **Case C（4 位翻转）**：valid=0
+- [x] **Case D（5 位翻转）**：如果 valid=1 则 data_out 必须正确（否则 valid=0）
+- [x] done 在 start 后 12 周期内拉高，持续 1 个周期（实际 +2 周期）
+- [x] 复位时 done=0, valid=0, data_out=0
+- [x] **绝对不能出现 valid=1 但 data_out 错误的情况**
 
 ### 4.8 产出文件
 
