@@ -1,0 +1,14 @@
+
+=== 2026-02-23 14:30 ===
+操作：创建 polar_common_pkg.sv（Checkpoint 1）
+文件：polar_common_pkg.sv
+提示词摘要：按照 checkpoint 检查清单完成第一个任务，创建位置映射包和辅助函数
+采纳内容：
+  - 定义 INFO_POS[0:39] 和 FROZEN_POS[0:23] 数组
+  - 实现 crc16_ccitt24 函数（CRC-16-CCITT，MSB优先，初始0x0000）
+  - 实现 build_u 函数（数据/CRC → 64位u向量，注意23-k和15-k映射）
+  - 实现 polar_transform64 函数（6级蝶形变换）
+  - 实现 pos_tables_ok 函数（验证位置表覆盖0-63无重叠）
+  - 实现 min_info_row_weight 函数（计算最小行重量=8）
+修改原因：这是整个项目的基础参数包，编码器、解码器和测试平台都依赖它
+---
