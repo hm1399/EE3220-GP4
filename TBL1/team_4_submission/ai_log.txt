@@ -1,78 +1,145 @@
-
 === 2026-02-23 14:30 ===
-操作：创建 polar_common_pkg.sv（Checkpoint 1）
-文件：polar_common_pkg.sv
-提示词摘要：按照 checkpoint 检查清单完成第一个任务，创建位置映射包和辅助函数
-采纳内容：
-  - 定义 INFO_POS[0:39] 和 FROZEN_POS[0:23] 数组
-  - 实现 crc16_ccitt24 函数（CRC-16-CCITT，MSB优先，初始0x0000）
-  - 实现 build_u 函数（数据/CRC → 64位u向量，注意23-k和15-k映射）
-  - 实现 polar_transform64 函数（6级蝶形变换）
-  - 实现 pos_tables_ok 函数（验证位置表覆盖0-63无重叠）
-  - 实现 min_info_row_weight 函数（计算最小行重量=8）
-修改原因：这是整个项目的基础参数包，编码器、解码器和测试平台都依赖它
+
+Operation: Create polar_common_pkg.sv (Checkpoint 1)
+
+File: polar_common_pkg.sv
+
+Prompt summary: Complete the first task according to the checkpoint checklist, and create location mapping packages and auxiliary functions.
+
+Adopted content:
+
+- Define INFO_POS[0:39] and FROZEN_POS[0:23] arrays
+
+- Implement crc16_ccitt24 function (CRC-16-CCITT, MSB priority, initial 0x0000)
+
+- Implement the build_u function (data/CRC → 64-bit u vector, pay attention to 23-k and 15-k mappings)
+
+- Realize the polar_transform64 function (6-level butterfly transformation)
+
+- Implement the pos_tables_ok function (verify that the position table covers 0-63 without overlap)
+
+- Implement the min_info_row_weight function (calculating the minimum row weight = 8)
+
+Reason for modification: This is the basic parameter package of the whole project, and the encoder, decoder and test platform all rely on it.
+
 ---
 
 === 2026-02-23 14:45 ===
-操作：创建 polar64_crc16_encoder.sv（Checkpoint 3）
-文件：polar64_crc16_encoder.sv
-提示词摘要：实现 Polar 编码器，done 在 start 后恰好第 2 个周期拉高
-采纳内容：
-  - 3 级流水线控制（pipe0, pipe1, done），确保 done 在 start 采样后 +2 周期
-  - data_reg 在 start 时锁存 data_in，保证数据稳定
-  - 组合逻辑完成 CRC→build_u→蝶形变换，结果在 pipe1 时寄存到 codeword
-  - 异步低电平复位，复位时所有输出清零
-修改原因：
-  - 检查清单建议的 2 位移位寄存器只能实现 +1 周期延迟，与 tb_basic.sv 的时序检查不匹配
-  - 通过仔细追踪 pulse_start → do_encode 的时序，确认需要 pipe0→pipe1→done 三级
-  - Python 验证 ref_encode(0xABCDEF) = 0x00051313163A5830
+
+Operation: Create polar64_crc16_encoder.sv (Checkpoint 3)
+
+File: polar64_crc16_encoder.sv
+
+Prompt summary: Implement the Polar encoder, and done is just pulled up in the second cycle after start.
+
+Adopted content:
+
+- Level 3 assembly line control (pipe0, pipe1, done) to ensure that done +2 cycles after start sampling
+
+- data_reg locks data_in at start to ensure data stability
+
+- The combination logic completes the CRC→build_u→butterfly transformation, and the result is stored in codeword at pipe1.
+
+- Asynchronous low-level reset, all outputs are reset during reset
+
+Reason for modification:
+
+- The 2 displacement register suggested by the check list can only achieve +1 cycle delay, which does not match the timing check of tb_basic.sv.
+
+- By carefully tracking the timing of pulse_start → do_encode, confirm that pipe0→pipe1→done three levels are required.
+
+- Python verification ref_encode(0xABCDEF) = 0x00051313163A5830
+
 ---
 
 === 2026-02-23 15:30 ===
-操作：修复 polar_transform64 方向错误 + 创建 polar64_crc16_decoder.sv（Checkpoint 4）
-文件：polar_common_pkg.sv, polar64_crc16_decoder.sv
-提示词摘要：继续完成 Checkpoint 4 实现解码器
-采纳内容：
-  - 发现 polar_transform64 方向错误：原来是 v[i+j] ^= v[i+j+half]（dmin=2），修正为 v[i+j+half] ^= v[i+j]（dmin=8）
-  - 两个文件都受影响：polar_common_pkg.sv 中修复了 polar_transform64 函数
-  - decoder 使用列 syndrome 查找表（COL_SYN[0:63]，各不相同）实现有界距离解码
-  - 权重1/2/3 错误逐级搜索，找不到匹配则 correctable=0，valid=0
-  - 3 级流水线（pipe0→pipe1→done），done 在 start 后 +2 周期拉高
-  - Python 验证：Case A/B1/B2/B3/C/D 全部通过
-修改原因：
-  - checklist 的简单 syndrome 算法只在错误完全落在冻结位时才能工作
-  - 实际单比特 codeword 翻转的 u-domain 投影同时跨越冻结位和信息位
-  - 列 syndrome 方法：每个 codeword 位置对应唯一的冻结位 syndrome，精确匹配确定错误位置
-  - transform 方向错误：v[i+j] ^= v[i+j+half] 是 F_N 转置，不能保证 dmin=8
+
+Operation: Fix polar_transform64 direction error + create polar64_crc16_decoder.sv (Checkpoint 4)
+
+File: polar_common_pkg.sv, polar64_crc16_decoder.sv
+
+Prompt summary: Continue to complete the Checkpoint 4 implementation decoder
+
+Adopted content:
+
+- Found polar_transform64 direction error: originally v[i+j] ^= v[i+j+half](dmin=2), corrected to v[i+j+half] ^= v[i+j] (dmin=8)
+
+- Both files are affected: the polar_transform64 function has been fixed in polar_common_pkg.sv
+
+- decoder uses the column syndrome lookup table (COL_SYN[0:63], varies) to realize bounded distance decoding
+
+- Weight 1/2/3 error step-by-step search, if no match can be found, correctable=0, valid=0
+
+- Level 3 assembly line (pipe0→pipe1→done), done is pulled up in +2 cycles after start
+
+- Python verification: Case A/B1/B2/B3/C/D all passed
+
+Reason for modification:
+
+- The simple syndrome algorithm of checklist can only work when the error is completely frozen.
+
+- The actual single-bit codeword flipped u-domain projection crosses the frozen bit and the information bit at the same time.
+
+- Column syndrome method: each codeword position corresponds to a unique frozen bit syndrome, and the exact match determines the wrong position.
+
+- Transform direction error: v[i+j] ^= v[i+j+half] is F_N transposition, which cannot guarantee dmin=8
+
 ---
 
 === 2026-02-23 16:00 ===
-操作：Checkpoint 5 编译验证
-文件：polar64_crc16_decoder.sv（修复latch），team_4_submission/run_sim.sh（新建）
-提示词摘要：继续完成 Checkpoint 5 编译验证
-采纳内容：
-  - 发现 decoder always_comb 有 latch（syn_rem1/syn_rem2/err_pat_comb 等未在所有路径赋值）
-  - 修复：在 always_comb 开头用 logic 声明并赋默认值，将临时变量内联计算
-  - verilator lint-only 后：无 latch 错误，仅 TIMESCALEMOD 警告（非错误）
-  - 本机无 Vivado xsim；iverilog 12 不支持 SV packed array localparam
-  - Python 完整仿真（镜像 tb_basic.sv 逻辑）：SMOKE score = 30/30，所有 case 通过
-  - 创建 run_sim.sh 脚本供 Vivado 环境一键运行
-修改原因：
-  - always_comb 中 if(!correctable) 分支里的临时赋值导致工具推断 latch
-  - 修复方式：在块开头默认赋值，然后条件覆盖，满足组合逻辑完备赋值要求
+
+Operation: Checkpoint 5 Compilation Verification
+
+File: polar64_crc16_decoder.sv (repair latch), team_4_submission/run_sim.sh (new)
+
+Summary of prompts: Continue to complete Checkpoint 5 compilation verification
+
+Adopted content:
+
+- It is found that decoder always_comb has latch (syn_rem1/syn_rem2/err_pat_comb, etc. are not assigned in all paths)
+
+- Repair: Declare and assign default values with logic at the beginning of always_comb, and calculate the temporary variables inline
+
+- After verilator lint-only: no latch error, only TIMESCALEMOD warning (non-error)
+
+- There is no Vivado xsim on this machine; iverilog 12 does not support SV packed array localparam
+
+- Python complete simulation (mirror tb_basic.sv logic): SMOKE score = 30/30, all cases pass
+
+- Create a run_sim.sh script for one-click run in the Vivado environment
+
+Reason for modification:
+
+- always_comb in if(! Correctable) The temporary assignment in the branch causes the tool to infer latch
+
+- Repair method: default assignment at the beginning of the block, and then overwrite the condition to meet the complete assignment requirements of combination logic.
+
 ---
 
 === 2026-02-23 17:00 ===
-操作：Checkpoint 6 更新项目文档
-文件：structure.md, log.txt, ai_log.txt, README.md, run_sim.bat
-提示词摘要：继续完成 Checkpoint 6，更新项目文档
-采纳内容：
-  - structure.md 全量重写，反映所有模块的最终实现状态
-  - log.txt 追加本条记录
-  - ai_log.txt 与 log.txt 同步（最终提交版）
-  - README.md 已存在，确认包含 xsim 编译运行命令
-  - 新增 run_sim.bat（Windows 版仿真脚本），路径分隔符改为反斜杠，行续接改为 ^，set -e 改为 errorlevel 检查
-修改原因：
-  - Checkpoint 6 要求文档与代码保持同步，确保提交时所有记录完整
-  - run_sim.bat 是应用户要求将 .sh 格式转换为 Windows bat 格式
+
+Operation: Checkpoint 6 Update Project Documents
+
+File: structure.md, log.txt, ai_log.txt, README.md, run_sim.bat
+
+Summary of prompts: Continue to complete Checkpoint 6 and update the project document
+
+Adopted content:
+
+- structure.md full rewriting, reflecting the final implementation status of all modules
+
+- log.txt Add this record
+
+- ai_log.txt is synchronized with log.txt (final submission version)
+
+- README.md already exists. Confirm that it contains the xsim compilation run command.
+
+- New run_sim.bat (Windows version simulation script), change the path separator to a backslash, change the line continuation to ^, and change set -e to errorlevel check
+
+Reason for modification:
+
+- Checkpoint 6 requires the document to be synchronized with the code to ensure that all records are complete when submitted.
+
+- run_sim.bat converts .sh format to Windows bat format at the request of the user
+
 ---
