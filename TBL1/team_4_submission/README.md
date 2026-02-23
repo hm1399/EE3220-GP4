@@ -9,8 +9,6 @@ team_4_submission/
 ├── polar_common_pkg.sv       # Shared package: INFO_POS, FROZEN_POS, helper functions
 ├── polar64_crc16_encoder.sv  # Encoder module (done @+2 cycles)
 ├── polar64_crc16_decoder.sv  # Decoder module (done @+2 cycles, t=3 BDD)
-├── run_sim.sh                # Vivado xsim simulation script (Linux/macOS)
-└── run_sim.bat               # Vivado xsim simulation script (Windows)
 tb_basic.sv                   # Public smoke testbench (provided, not modified)
 ```
 
@@ -31,21 +29,19 @@ tb_basic.sv                   # Public smoke testbench (provided, not modified)
 Run from the `TBL1/` directory:
 
 **Linux / macOS:**
+### （Vivado xsim）
 ```bash
-bash team_4_submission/run_sim.sh
+xvlog -sv polar_common_pkg.sv polar64_crc16_encoder.sv \
+    polar64_crc16_decoder.sv tb_basic.sv
+xelab tb_basic -debug typical -s sim_snapshot
+xsim sim_snapshot -runall
 ```
-
-**Windows:**
-```bat
-team_4_submission\run_sim.bat
-```
-
 **Manual steps:**
 ```bash
 xvlog -sv \
-  team_4_submission/polar_common_pkg.sv \
-  team_4_submission/polar64_crc16_encoder.sv \
-  team_4_submission/polar64_crc16_decoder.sv \
+  polar_common_pkg.sv \
+  polar64_crc16_encoder.sv \
+  polar64_crc16_decoder.sv \
   tb_basic.sv
 
 xelab tb_basic -debug typical -s sim_snapshot

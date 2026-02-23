@@ -11,9 +11,9 @@ cd "$TBL1_DIR"
 
 echo "=== Step 1: xvlog compile ==="
 xvlog -sv \
-  team_4_submission/polar_common_pkg.sv \
-  team_4_submission/polar64_crc16_encoder.sv \
-  team_4_submission/polar64_crc16_decoder.sv \
+  polar_common_pkg.sv \
+  polar64_crc16_encoder.sv \
+  polar64_crc16_decoder.sv \
   tb_basic.sv
 
 echo "=== Step 2: xelab ==="
