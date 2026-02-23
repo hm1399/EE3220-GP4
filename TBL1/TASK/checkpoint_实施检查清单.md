@@ -484,9 +484,9 @@ xsim sim_snapshot -runall
 
 ### 6.3 验收标准
 
-- [ ] `structure.md` 反映真实代码状态
-- [ ] `log.txt` 有完整记录
-- [ ] `README.md` 包含 xsim 编译运行命令
+- [x] `structure.md` 反映真实代码状态
+- [x] `log.txt` 有完整记录
+- [x] `README.md` 包含 xsim 编译运行命令
 
 ---
 
