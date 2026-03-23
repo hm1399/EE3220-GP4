@@ -1,0 +1,139 @@
+EE3220 TBL2 AI Usage Log
+
+Project:
+PicoRV32 Mission Clock with UART output and timer-based time update
+
+Date:
+2026-03-23
+
+Purpose of this log:
+This file records how AI assistance was used during the development of the TBL2 project, what outputs were produced, and which tasks still required manual human action.
+
+AI tool used:
+OpenAI Codex / ChatGPT-style coding assistant in the shared repository workspace
+
+Scope of AI assistance:
+- Read the project handout, TODO files, frozen specification, and provided skeleton code
+- Summarize the repository state and project requirements
+- Explain the required build and bring-up flow
+- Help diagnose firmware build issues
+- Edit source files in the repository
+- Create the directed simulation testbench
+- Generate English submission documents
+
+High-level record of AI-supported work:
+
+1. Repository analysis and requirement extraction
+- AI read the project repository, including the skeleton RTL, firmware files, TODO documents, handout markdown, and board connection notes.
+- AI summarized the required implementation scope:
+  - UART TX peripheral
+  - timer peripheral
+  - SoC integration
+  - bare-metal mission clock firmware
+  - testbench
+  - final documentation
+- AI confirmed that Vivado GUI work, FPGA programming, physical wiring, and UART terminal observation must be completed manually.
+
+2. Frozen specification support
+- AI reviewed and helped structure the implementation around the frozen project rules:
+  - reference MMIO map
+  - UART TX-only base path
+  - timer write-one-to-clear behavior
+  - no CPU modification
+  - parameterized timer period
+- AI used the frozen spec as the basis for later code and testbench work.
+
+3. Windows build-flow guidance
+- AI explained that `clock.mem` must be generated in a terminal, not inside Vivado Block Design.
+- AI prepared a Windows/MSYS2-oriented build guide and saved it as:
+  - `讨论/TBL2_Windows课程机构建与环境安装指南.md`
+- AI also explained how to install the required environment on Windows using MSYS2 and `pacman`.
+
+4. Firmware build debugging
+- After the user generated the firmware toolchain and ran `make`, the linker failed with unresolved helper symbols:
+  - `__udivsi3`
+  - `__umodsi3`
+- AI traced the issue to the two-digit decimal formatting logic in:
+  - `ee3220_tbl2_skeleton_rev1.0/firmware/clock.c`
+- AI modified `uart_put_2digits()` to avoid division and modulo, replacing them with repeated subtraction so that the bare-metal build would not depend on extra runtime helper libraries.
+- This allowed the firmware build flow to proceed cleanly.
+
+5. Firmware image generation support
+- AI explained the role of `clock.mem`:
+  - it is the instruction-memory initialization image used by `imem.sv`
+  - it is generated from `clock.c + start.S + linker.ld`
+  - it is required both for simulation and FPGA implementation
+- After the user generated `clock.mem`, AI checked that:
+  - the file existed
+  - its format matched `$readmemh`
+  - the content looked consistent with the firmware image
+
+6. Testbench implementation for TODO 06
+- AI completed TODO 06 by creating:
+  - `tb_basic.sv`
+- The testbench:
+  - instantiates the SoC
+  - shortens UART and timer timing parameters for simulation
+  - decodes UART TX output as a serial 8N1 stream
+  - compares actual transmitted characters against expected clock strings
+- Directed cases implemented:
+  - reset output `00:00:00`
+  - next tick `00:00:01`
+  - `00:00:59 -> 00:01:00`
+  - `00:59:59 -> 01:00:00`
+  - `23:59:59 -> 00:00:00`
+- AI also made a small Icarus Verilog compatibility adjustment:
+  - changed string-typed parameters in `imem.sv` and `picorv32_soc_ref.sv` into plain parameters so local `iverilog` elaboration would succeed
+
+7. Local simulation execution
+- AI ran local Icarus Verilog simulation commands:
+  - compile command using `iverilog -g2012`
+  - run command using `vvp`
+- Result:
+  - all directed TODO 06 simulation cases passed locally
+- AI explicitly noted that this is accelerated functional verification, not a substitute for the final board demonstration.
+
+8. Submission document generation
+- AI created an English repository README:
+  - `README.md`
+- AI created an English report source:
+  - `report.md`
+- AI generated a Word document version of the report:
+  - `report.docx`
+- The generated documentation records:
+  - project overview
+  - MMIO map
+  - firmware behavior
+  - simulation flow
+  - Vivado bring-up flow
+  - remaining manual hardware tasks
+
+Files created by AI:
+- `tb_basic.sv`
+- `README.md`
+- `report.md`
+- `report.docx`
+- `讨论/TBL2_Windows课程机构建与环境安装指南.md`
+- `ai_log.txt`
+
+Files modified by AI:
+- `ee3220_tbl2_skeleton_rev1.0/firmware/clock.c`
+- `ee3220_tbl2_skeleton_rev1.0/rtl/imem.sv`
+- `ee3220_tbl2_skeleton_rev1.0/rtl/picorv32_soc_ref.sv`
+
+Human actions still required:
+- Open Vivado on the course machine
+- Add RTL, constraints, and `clock.mem`
+- Set top module to `pynq_z2_tx_demo_top`
+- Run synthesis and implementation
+- Generate bitstream
+- Wire CH340 to PYNQ-Z2
+- Program the FPGA
+- Observe UART output on the real board
+- Convert `report.docx` to `report.pdf`
+- Package the final submission zip
+
+Notes on accuracy and responsibility:
+- AI-assisted code and documentation were reviewed against the local repository and project handout.
+- Local directed simulation was completed successfully.
+- Board-level validation has not been performed by AI and must be confirmed manually in the laboratory environment.

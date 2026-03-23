@@ -4,6 +4,9 @@ module pynq_z2_tx_demo_top #(
     parameter string IMEM_HEX = "clock.mem"
 ) (
     input  logic       clk_125mhz,
+    input  logic       btn0,
+    input  logic       btn1,
+    input  logic       btn2,
     input  logic       uart_rxd,
     output logic       uart_txd
 );
@@ -111,6 +114,7 @@ module pynq_z2_tx_demo_top #(
     ) u_soc (
         .clk            (soc_clk),
         .resetn         (resetn),
+        .buttons        ({btn2, btn1, btn0}),
         .uart_rxd       (uart_rxd),
         .uart_txd       (uart_txd)
     );

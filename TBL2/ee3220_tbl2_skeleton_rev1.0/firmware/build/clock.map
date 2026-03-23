@@ -1,0 +1,69 @@
+
+Merging object attributes
+
+
+Discarded input sections
+
+ .riscv.attributes
+                0x00000000       0x1a C:\msys64\tmp\cc7KWhQv.o
+ .comment       0x00000000       0x13 C:\msys64\tmp\ccxvLtJ8.o
+ .riscv.attributes
+                0x00000000       0x1c C:\msys64\tmp\ccxvLtJ8.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+IMEM             0x00000000         0x00004000         xr
+DMEM             0x00010000         0x00002000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x00000000      0x193
+ *(.text.start)
+ .text.start    0x00000000       0x10 C:\msys64\tmp\cc7KWhQv.o
+                0x00000000                _start
+ *(.text .text.*)
+ .text          0x00000010        0x0 C:\msys64\tmp\cc7KWhQv.o
+ .text          0x00000010       0xd0 C:\msys64\tmp\ccxvLtJ8.o
+ .text.startup  0x000000e0       0xb0 C:\msys64\tmp\ccxvLtJ8.o
+                0x000000e0                main
+ *(.rodata .rodata.*)
+ .rodata.str1.4
+                0x00000190        0x3 C:\msys64\tmp\ccxvLtJ8.o
+ *(.srodata .srodata.*)
+
+.rela.dyn       0x00000194        0x0
+ .rela.text.start
+                0x00000194        0x0 C:\msys64\tmp\cc7KWhQv.o
+
+.data           0x00010000        0x0
+ *(.data .data.*)
+ .data          0x00010000        0x0 C:\msys64\tmp\cc7KWhQv.o
+ .data          0x00010000        0x0 C:\msys64\tmp\ccxvLtJ8.o
+ *(.sdata .sdata.*)
+
+.bss            0x00010000        0x0
+ *(.sbss .sbss.*)
+ *(.bss .bss.*)
+ .bss           0x00010000        0x0 C:\msys64\tmp\cc7KWhQv.o
+ .bss           0x00010000        0x0 C:\msys64\tmp\ccxvLtJ8.o
+ *(COMMON)
+                0x00010000                        . = ALIGN (0x10)
+                0x000001a0                        _end = .
+                0x00012000                        _stack_top = (ORIGIN (DMEM) + LENGTH (DMEM))
+
+/DISCARD/
+ *(.comment)
+ *(.eh_frame)
+ *(.eh_frame_hdr)
+ *(.riscv.attributes)
+LOAD C:\msys64\tmp\cc7KWhQv.o
+LOAD C:\msys64\tmp\ccxvLtJ8.o
+OUTPUT(C:/Users/SL-35/Desktop/EE3220-GP4-main/TBL2/ee3220_tbl2_skeleton_rev1.0/firmware/build/clock.elf elf32-littleriscv)
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 C:\msys64\tmp\ccxvLtJ8.o

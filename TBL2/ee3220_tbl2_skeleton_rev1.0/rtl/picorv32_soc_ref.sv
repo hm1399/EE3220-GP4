@@ -4,13 +4,14 @@ module picorv32_soc_ref #(
     parameter int unsigned CLK_HZ            = 125_000_000,
     parameter int unsigned UART_BAUD         = 115_200,
     parameter int unsigned TIMER_TICK_CYCLES = 125_000_000,
-    parameter string       IMEM_HEX          = "clock.mem",
+    parameter              IMEM_HEX          = "clock.mem",
     parameter logic [31:0] DMEM_BASE_ADDR    = 32'h0001_0000,
     parameter int unsigned DMEM_BYTES        = 8192,
     parameter int unsigned IMEM_WORDS        = 4096
 ) (
     input  logic        clk,
     input  logic        resetn,
+    input  logic [2:0]  buttons,
     input  logic        uart_rxd,
     output logic        uart_txd
 );
@@ -31,10 +32,12 @@ module picorv32_soc_ref #(
     logic [31:0] dmem_rdata;
     logic [31:0] uart_rdata;
     logic [31:0] timer_rdata;
+    logic [31:0] button_rdata;
     logic        imem_ready;
     logic        dmem_ready;
     logic        uart_ready;
     logic        timer_ready;
+    logic        button_ready;
     logic        invalid_ready;
 
     logic        mem_we;
@@ -42,19 +45,40 @@ module picorv32_soc_ref #(
     logic        dmem_hit;
     logic        uart_hit;
     logic        timer_hit;
+    logic        button_hit;
+
+    logic [2:0]  buttons_meta;
+    logic [2:0]  buttons_sync;
 
     localparam logic [31:0] UART_BASE    = 32'h4000_0000;
     localparam logic [31:0] UART_TXDATA  = UART_BASE + 32'h0000_0000;
     localparam logic [31:0] UART_STATUS  = UART_BASE + 32'h0000_0004;
+    localparam logic [31:0] UART_RXDATA  = UART_BASE + 32'h0000_0008;
     localparam logic [31:0] TIMER_BASE   = 32'h4000_0010;
     localparam logic [31:0] TIMER_STATUS = TIMER_BASE + 32'h0000_0000;
     localparam logic [31:0] TIMER_VALUE  = TIMER_BASE + 32'h0000_0004;
+    localparam logic [31:0] BUTTON_BASE   = 32'h4000_0020;
+    localparam logic [31:0] BUTTON_STATUS = BUTTON_BASE + 32'h0000_0000;
 
     assign mem_we   = |mem_wstrb;
     assign imem_hit = (mem_addr < IMEM_BYTES) && !mem_we;
     assign dmem_hit = (mem_addr >= DMEM_BASE_ADDR) && (mem_addr < (DMEM_BASE_ADDR + DMEM_BYTES));
-    assign uart_hit = (mem_addr == UART_TXDATA) || (mem_addr == UART_STATUS);
+    assign uart_hit = (mem_addr == UART_TXDATA) || (mem_addr == UART_STATUS) || (mem_addr == UART_RXDATA);
     assign timer_hit = (mem_addr == TIMER_STATUS) || (mem_addr == TIMER_VALUE);
+    assign button_hit = (mem_addr == BUTTON_STATUS);
+
+    always_ff @(posedge clk or negedge resetn) begin
+        if (!resetn) begin
+            buttons_meta <= 3'b000;
+            buttons_sync <= 3'b000;
+        end else begin
+            buttons_meta <= buttons;
+            buttons_sync <= buttons_meta;
+        end
+    end
+
+    assign button_rdata = {29'd0, buttons_sync};
+    assign button_ready = mem_valid && button_hit;
 
     picorv32 #(
         .ENABLE_COUNTERS    (1'b0),
@@ -151,13 +175,14 @@ module picorv32_soc_ref #(
     // invalid_ready is based on address hits instead of ready signals so an
     // MMIO access can stall correctly when the targeted peripheral is busy.
     assign imem_ready    = mem_valid && imem_hit;
-    assign invalid_ready = mem_valid && !(imem_hit || dmem_hit || uart_hit || timer_hit);
+    assign invalid_ready = mem_valid && !(imem_hit || dmem_hit || uart_hit || timer_hit || button_hit);
 
-    assign mem_ready = imem_ready | dmem_ready | uart_ready | timer_ready | invalid_ready;
+    assign mem_ready = imem_ready | dmem_ready | uart_ready | timer_ready | button_ready | invalid_ready;
     assign mem_rdata = imem_ready  ? imem_rdata :
                        dmem_ready  ? dmem_rdata :
                        uart_ready  ? uart_rdata :
                        timer_ready ? timer_rdata :
+                       button_ready ? button_rdata :
                        32'd0;
 
 

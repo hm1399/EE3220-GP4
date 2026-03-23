@@ -1,0 +1,117 @@
+
+C:/Users/SL-35/Desktop/EE3220-GP4-main/TBL2/ee3220_tbl2_skeleton_rev1.0/firmware/build/clock.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00012117          	auipc	sp,0x12
+   4:	00010113          	mv	sp,sp
+   8:	0d8000ef          	jal	e0 <main>
+   c:	0000006f          	j	c <_start+0xc>
+
+00000010 <uart_putc>:
+  10:	40000737          	lui	a4,0x40000
+  14:	00470713          	addi	a4,a4,4 # 40000004 <_stack_top+0x3ffee004>
+  18:	00072783          	lw	a5,0(a4)
+  1c:	0017f793          	andi	a5,a5,1
+  20:	fe078ce3          	beqz	a5,18 <uart_putc+0x8>
+  24:	400007b7          	lui	a5,0x40000
+  28:	00a7a023          	sw	a0,0(a5) # 40000000 <_stack_top+0x3ffee000>
+  2c:	00008067          	ret
+
+00000030 <uart_put_2digits>:
+  30:	ff010113          	addi	sp,sp,-16 # 11ff0 <_end+0x11e50>
+  34:	00812423          	sw	s0,8(sp)
+  38:	00112623          	sw	ra,12(sp)
+  3c:	00050413          	mv	s0,a0
+  40:	00900793          	li	a5,9
+  44:	00000513          	li	a0,0
+  48:	0287e463          	bltu	a5,s0,70 <uart_put_2digits+0x40>
+  4c:	03050513          	addi	a0,a0,48
+  50:	0ff57513          	zext.b	a0,a0
+  54:	fbdff0ef          	jal	10 <uart_putc>
+  58:	03040513          	addi	a0,s0,48
+  5c:	00812403          	lw	s0,8(sp)
+  60:	00c12083          	lw	ra,12(sp)
+  64:	0ff57513          	zext.b	a0,a0
+  68:	01010113          	addi	sp,sp,16
+  6c:	fa5ff06f          	j	10 <uart_putc>
+  70:	00150513          	addi	a0,a0,1
+  74:	ff640413          	addi	s0,s0,-10
+  78:	0ff57513          	zext.b	a0,a0
+  7c:	fcdff06f          	j	48 <uart_put_2digits+0x18>
+
+00000080 <print_time>:
+  80:	ff010113          	addi	sp,sp,-16
+  84:	00812423          	sw	s0,8(sp)
+  88:	00050413          	mv	s0,a0
+  8c:	00052503          	lw	a0,0(a0)
+  90:	00112623          	sw	ra,12(sp)
+  94:	f9dff0ef          	jal	30 <uart_put_2digits>
+  98:	03a00513          	li	a0,58
+  9c:	f75ff0ef          	jal	10 <uart_putc>
+  a0:	00442503          	lw	a0,4(s0)
+  a4:	f8dff0ef          	jal	30 <uart_put_2digits>
+  a8:	03a00513          	li	a0,58
+  ac:	f65ff0ef          	jal	10 <uart_putc>
+  b0:	00842503          	lw	a0,8(s0)
+  b4:	19000413          	li	s0,400
+  b8:	f79ff0ef          	jal	30 <uart_put_2digits>
+  bc:	00044503          	lbu	a0,0(s0)
+  c0:	00051a63          	bnez	a0,d4 <print_time+0x54>
+  c4:	00c12083          	lw	ra,12(sp)
+  c8:	00812403          	lw	s0,8(sp)
+  cc:	01010113          	addi	sp,sp,16
+  d0:	00008067          	ret
+  d4:	00140413          	addi	s0,s0,1
+  d8:	f39ff0ef          	jal	10 <uart_putc>
+  dc:	fe1ff06f          	j	bc <print_time+0x3c>
+
+000000e0 <main>:
+  e0:	fd010113          	addi	sp,sp,-48
+  e4:	01312e23          	sw	s3,28(sp)
+  e8:	00410513          	addi	a0,sp,4
+  ec:	400009b7          	lui	s3,0x40000
+  f0:	02812423          	sw	s0,40(sp)
+  f4:	02912223          	sw	s1,36(sp)
+  f8:	03212023          	sw	s2,32(sp)
+  fc:	01412c23          	sw	s4,24(sp)
+ 100:	01512a23          	sw	s5,20(sp)
+ 104:	01612823          	sw	s6,16(sp)
+ 108:	02112623          	sw	ra,44(sp)
+ 10c:	00012223          	sw	zero,4(sp)
+ 110:	00012423          	sw	zero,8(sp)
+ 114:	00012623          	sw	zero,12(sp)
+ 118:	00000413          	li	s0,0
+ 11c:	f65ff0ef          	jal	80 <print_time>
+ 120:	00000493          	li	s1,0
+ 124:	00000913          	li	s2,0
+ 128:	01098993          	addi	s3,s3,16 # 40000010 <_stack_top+0x3ffee010>
+ 12c:	00100a13          	li	s4,1
+ 130:	03c00a93          	li	s5,60
+ 134:	01800b13          	li	s6,24
+ 138:	0009a783          	lw	a5,0(s3)
+ 13c:	0017f793          	andi	a5,a5,1
+ 140:	fe078ce3          	beqz	a5,138 <main+0x58>
+ 144:	0149a023          	sw	s4,0(s3)
+ 148:	00140413          	addi	s0,s0,1
+ 14c:	01541e63          	bne	s0,s5,168 <main+0x88>
+ 150:	00148493          	addi	s1,s1,1
+ 154:	02849663          	bne	s1,s0,180 <main+0xa0>
+ 158:	00190913          	addi	s2,s2,1
+ 15c:	00000413          	li	s0,0
+ 160:	00000493          	li	s1,0
+ 164:	03690263          	beq	s2,s6,188 <main+0xa8>
+ 168:	00410513          	addi	a0,sp,4
+ 16c:	01212223          	sw	s2,4(sp)
+ 170:	00912423          	sw	s1,8(sp)
+ 174:	00812623          	sw	s0,12(sp)
+ 178:	f09ff0ef          	jal	80 <print_time>
+ 17c:	fbdff06f          	j	138 <main+0x58>
+ 180:	00000413          	li	s0,0
+ 184:	fe5ff06f          	j	168 <main+0x88>
+ 188:	00000913          	li	s2,0
+ 18c:	fddff06f          	j	168 <main+0x88>
+ 190:	0a0d                	.insn	2, 0x0a0d
+	...

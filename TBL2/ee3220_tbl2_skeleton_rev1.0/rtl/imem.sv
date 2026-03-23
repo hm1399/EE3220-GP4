@@ -2,7 +2,7 @@
 
 module imem #(
     parameter int unsigned WORDS   = 4096,
-    parameter string       MEMFILE = "clock.mem"
+    parameter              MEMFILE = "clock.mem"
 ) (
     input  logic [31:0] addr,
     output logic [31:0] rdata
