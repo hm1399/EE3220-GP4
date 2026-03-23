@@ -1,0 +1,260 @@
+{
+  "table_of_contents": [
+    {
+      "title": "EE3220 TBL2",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          266.4000244140625,
+          74.41693115234375
+        ],
+        [
+          349.2497253417969,
+          74.41693115234375
+        ],
+        [
+          349.2497253417969,
+          88.43035888671875
+        ],
+        [
+          266.4000244140625,
+          88.43035888671875
+        ]
+      ]
+    },
+    {
+      "title": "Connections between CH340 and PYNQ-Z2",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          169.734375,
+          102.25689697265625
+        ],
+        [
+          445.4334411621094,
+          102.25689697265625
+        ],
+        [
+          445.4334411621094,
+          116.27032470703125
+        ],
+        [
+          169.734375,
+          116.27032470703125
+        ]
+      ]
+    },
+    {
+      "title": "1. Required wiring",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          72.0,
+          129.6236572265625
+        ],
+        [
+          172.57032775878906,
+          129.6236572265625
+        ],
+        [
+          172.57032775878906,
+          141.6009521484375
+        ],
+        [
+          72.0,
+          141.6009521484375
+        ]
+      ]
+    },
+    {
+      "title": "2. Safety and handling notes",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          71.419921875,
+          478.7036437988281
+        ],
+        [
+          228.25038146972656,
+          478.7036437988281
+        ],
+        [
+          228.25038146972656,
+          490.680908203125
+        ],
+        [
+          71.419921875,
+          490.680908203125
+        ]
+      ]
+    },
+    {
+      "title": "3. Sample graph",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          71.419921875,
+          317.8828125
+        ],
+        [
+          161.7960205078125,
+          317.8828125
+        ],
+        [
+          161.7960205078125,
+          330.240966796875
+        ],
+        [
+          71.419921875,
+          330.240966796875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          82
+        ],
+        [
+          "TableCell",
+          19
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "TableCell",
+          90
+        ],
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/EE3220_TBL2_Connections"
+}

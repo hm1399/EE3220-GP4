@@ -1,0 +1,342 @@
+{
+  "table_of_contents": [
+    {
+      "title": "PURPOSE OF THIS TBL",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          92.09375,
+          113.948974609375
+        ],
+        [
+          347.99273681640625,
+          113.948974609375
+        ],
+        [
+          347.99273681640625,
+          142.948974609375
+        ],
+        [
+          92.09375,
+          142.948974609375
+        ]
+      ]
+    },
+    {
+      "title": "SCHEDULE AND FLOW",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.626953125,
+          113.948974609375
+        ],
+        [
+          350.174560546875,
+          113.948974609375
+        ],
+        [
+          350.174560546875,
+          142.948974609375
+        ],
+        [
+          89.626953125,
+          142.948974609375
+        ]
+      ]
+    },
+    {
+      "title": "SYSTEM ARCHITECTURE",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          89.626953125,
+          113.948974609375
+        ],
+        [
+          368.4550476074219,
+          113.948974609375
+        ],
+        [
+          368.4550476074219,
+          142.948974609375
+        ],
+        [
+          89.626953125,
+          142.948974609375
+        ]
+      ]
+    },
+    {
+      "title": "WHAT SUCCESS LOOKS LIKE",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          92.09375,
+          113.948974609375
+        ],
+        [
+          411.2997131347656,
+          113.948974609375
+        ],
+        [
+          411.2997131347656,
+          142.948974609375
+        ],
+        [
+          92.09375,
+          142.948974609375
+        ]
+      ]
+    },
+    {
+      "title": "GRADING AND EXPECTATION",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          91.271484375,
+          113.948974609375
+        ],
+        [
+          426.8030700683594,
+          113.948974609375
+        ],
+        [
+          426.8030700683594,
+          142.948974609375
+        ],
+        [
+          91.271484375,
+          142.948974609375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          12
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/TBL2"
+}

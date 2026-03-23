@@ -1,0 +1,2358 @@
+{
+  "table_of_contents": [
+    {
+      "title": "PYNQ-Z2 Reference Manual v1.0",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          130.375,
+          205.42291259765625
+        ],
+        [
+          469.0299987792969,
+          205.42291259765625
+        ],
+        [
+          469.0299987792969,
+          229.42291259765625
+        ],
+        [
+          130.375,
+          229.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "Contents",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          87.82367758186398,
+          80.22617987533393
+        ],
+        [
+          153.12846347607052,
+          80.22617987533393
+        ],
+        [
+          153.12846347607052,
+          98.22083704363313
+        ],
+        [
+          87.82367758186398,
+          98.22083704363313
+        ]
+      ]
+    },
+    {
+      "title": "1 PYNQ-Z2 features",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          290.01800537109375,
+          79.42291259765625
+        ],
+        [
+          290.01800537109375,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 ZYNQ XC7Z020-1CLG400C",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          107.09375,
+          125.801513671875
+        ],
+        [
+          275.5820007324219,
+          125.801513671875
+        ],
+        [
+          275.5820007324219,
+          137.801513671875
+        ],
+        [
+          107.09375,
+          137.801513671875
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 Memory and storage",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          107.966796875,
+          287.83148193359375
+        ],
+        [
+          232.59201049804688,
+          287.83148193359375
+        ],
+        [
+          232.59201049804688,
+          300.126953125
+        ],
+        [
+          107.966796875,
+          300.126953125
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 Power",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          106.51171875,
+          377.8314514160156
+        ],
+        [
+          158.57598876953125,
+          377.8314514160156
+        ],
+        [
+          158.57598876953125,
+          389.8314514160156
+        ],
+        [
+          106.51171875,
+          389.8314514160156
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 USB and Ethernet",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          106.51171875,
+          413.8314514160156
+        ],
+        [
+          219.9560089111328,
+          413.8314514160156
+        ],
+        [
+          219.9560089111328,
+          425.8314514160156
+        ],
+        [
+          106.51171875,
+          425.8314514160156
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 Audio and Video",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          108.0199966430664,
+          503.8514709472656
+        ],
+        [
+          212.74400329589844,
+          503.8514709472656
+        ],
+        [
+          212.74400329589844,
+          515.8514709472656
+        ],
+        [
+          108.0199966430664,
+          515.8514709472656
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 Switches, Push-buttons and LEDs",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          107.09375,
+          574.3525390625
+        ],
+        [
+          300.328125,
+          574.3525390625
+        ],
+        [
+          300.328125,
+          587.8514709472656
+        ],
+        [
+          107.09375,
+          587.8514709472656
+        ]
+      ]
+    },
+    {
+      "title": "\u2022 Expansion Connectors",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          107.966796875,
+          665.8814697265625
+        ],
+        [
+          241.6280059814453,
+          665.8814697265625
+        ],
+        [
+          241.6280059814453,
+          677.8814697265625
+        ],
+        [
+          107.966796875,
+          677.8814697265625
+        ]
+      ]
+    },
+    {
+      "title": "2 Board files and XDC constraints file",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          89.6328125,
+          79.42291259765625
+        ],
+        [
+          459.8046875,
+          79.42291259765625
+        ],
+        [
+          459.8046875,
+          103.42291259765625
+        ],
+        [
+          89.6328125,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "3 Power",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          175.33999633789062,
+          79.42291259765625
+        ],
+        [
+          175.33999633789062,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "4 Boot mode selection",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          305.56640625,
+          79.42291259765625
+        ],
+        [
+          305.56640625,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "5 Clock Sources",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          89.05078125,
+          79.42291259765625
+        ],
+        [
+          247.4119873046875,
+          79.42291259765625
+        ],
+        [
+          247.4119873046875,
+          103.42291259765625
+        ],
+        [
+          89.05078125,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "6 DRAM",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          88.759765625,
+          79.42291259765625
+        ],
+        [
+          179.87599182128906,
+          79.42291259765625
+        ],
+        [
+          179.87599182128906,
+          103.42291259765625
+        ],
+        [
+          88.759765625,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "7 Quad SPI Flash",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          89.6328125,
+          79.42291259765625
+        ],
+        [
+          258.6919860839844,
+          79.42291259765625
+        ],
+        [
+          258.6919860839844,
+          103.42291259765625
+        ],
+        [
+          89.6328125,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "8 USB Host",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          89.923828125,
+          79.42291259765625
+        ],
+        [
+          206.01199340820312,
+          79.42291259765625
+        ],
+        [
+          206.01199340820312,
+          103.42291259765625
+        ],
+        [
+          89.923828125,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "9 ADAU1761 Audio Codec",
+      "heading_level": null,
+      "page_id": 12,
+      "polygon": [
+        [
+          88.46875,
+          79.42291259765625
+        ],
+        [
+          358.72998046875,
+          79.42291259765625
+        ],
+        [
+          358.72998046875,
+          103.42291259765625
+        ],
+        [
+          88.46875,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "10 MicroSD",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          209.4199981689453,
+          79.42291259765625
+        ],
+        [
+          209.4199981689453,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "11 Ethernet PHY",
+      "heading_level": null,
+      "page_id": 14,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          255.51171875,
+          79.42291259765625
+        ],
+        [
+          255.51171875,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "MAC address",
+      "heading_level": null,
+      "page_id": 15,
+      "polygon": [
+        [
+          88.46875,
+          180.761474609375
+        ],
+        [
+          160.89599609375,
+          180.761474609375
+        ],
+        [
+          160.89599609375,
+          192.761474609375
+        ],
+        [
+          88.46875,
+          192.761474609375
+        ]
+      ]
+    },
+    {
+      "title": "12 MicroUSB Port",
+      "heading_level": null,
+      "page_id": 16,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          271.364013671875,
+          79.42291259765625
+        ],
+        [
+          271.364013671875,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "Driver",
+      "heading_level": null,
+      "page_id": 16,
+      "polygon": [
+        [
+          89.05078125,
+          380.3514709472656
+        ],
+        [
+          123.93599700927734,
+          380.3514709472656
+        ],
+        [
+          123.93599700927734,
+          392.3514709472656
+        ],
+        [
+          89.05078125,
+          392.3514709472656
+        ]
+      ]
+    },
+    {
+      "title": "13 HDMI ports",
+      "heading_level": null,
+      "page_id": 17,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          238.052001953125,
+          79.42291259765625
+        ],
+        [
+          238.052001953125,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "14 LEDs, Buttons, Switches",
+      "heading_level": null,
+      "page_id": 19,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          361.4419860839844,
+          79.42291259765625
+        ],
+        [
+          361.4419860839844,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "Push-buttons",
+      "heading_level": null,
+      "page_id": 19,
+      "polygon": [
+        [
+          89.341796875,
+          422.3514709472656
+        ],
+        [
+          158.01199340820312,
+          422.3514709472656
+        ],
+        [
+          158.01199340820312,
+          434.3514709472656
+        ],
+        [
+          89.341796875,
+          434.3514709472656
+        ]
+      ]
+    },
+    {
+      "title": "Switches",
+      "heading_level": null,
+      "page_id": 19,
+      "polygon": [
+        [
+          89.6328125,
+          603.9541015625
+        ],
+        [
+          134.73599243164062,
+          603.9541015625
+        ],
+        [
+          134.73599243164062,
+          616.7714538574219
+        ],
+        [
+          89.6328125,
+          616.7714538574219
+        ]
+      ]
+    },
+    {
+      "title": "LEDs",
+      "heading_level": null,
+      "page_id": 20,
+      "polygon": [
+        [
+          89.6328125,
+          75.6484375
+        ],
+        [
+          119.8984375,
+          75.6484375
+        ],
+        [
+          119.8984375,
+          87.74151611328125
+        ],
+        [
+          89.6328125,
+          87.74151611328125
+        ]
+      ]
+    },
+    {
+      "title": "Tri color LEDs",
+      "heading_level": null,
+      "page_id": 20,
+      "polygon": [
+        [
+          88.46875,
+          309.31146240234375
+        ],
+        [
+          168.0,
+          309.31146240234375
+        ],
+        [
+          168.0,
+          321.31146240234375
+        ],
+        [
+          88.46875,
+          321.31146240234375
+        ]
+      ]
+    },
+    {
+      "title": "15 Board reset signals",
+      "heading_level": null,
+      "page_id": 21,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          303.23828125,
+          79.42291259765625
+        ],
+        [
+          303.23828125,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "16 Pmod Ports",
+      "heading_level": null,
+      "page_id": 22,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          231.40399169921875,
+          79.42291259765625
+        ],
+        [
+          231.40399169921875,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "PMODA",
+      "heading_level": null,
+      "page_id": 23,
+      "polygon": [
+        [
+          89.6328125,
+          75.6484375
+        ],
+        [
+          133.35598754882812,
+          75.6484375
+        ],
+        [
+          133.35598754882812,
+          87.74151611328125
+        ],
+        [
+          89.6328125,
+          87.74151611328125
+        ]
+      ]
+    },
+    {
+      "title": "PMODB",
+      "heading_level": null,
+      "page_id": 23,
+      "polygon": [
+        [
+          90.02399444580078,
+          398.798828125
+        ],
+        [
+          132.994140625,
+          398.798828125
+        ],
+        [
+          132.994140625,
+          410.8314514160156
+        ],
+        [
+          90.02399444580078,
+          410.8314514160156
+        ]
+      ]
+    },
+    {
+      "title": "17 Arduino Shield Connector",
+      "heading_level": null,
+      "page_id": 24,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          372.1700134277344,
+          79.42291259765625
+        ],
+        [
+          372.1700134277344,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "Digital I/O",
+      "heading_level": null,
+      "page_id": 24,
+      "polygon": [
+        [
+          89.6328125,
+          561.1962890625
+        ],
+        [
+          163.23252868652344,
+          561.1962890625
+        ],
+        [
+          163.23252868652344,
+          579.0241394042969
+        ],
+        [
+          89.6328125,
+          579.0241394042969
+        ]
+      ]
+    },
+    {
+      "title": "Arduino J3 pins",
+      "heading_level": null,
+      "page_id": 25,
+      "polygon": [
+        [
+          89.05078125,
+          239.279296875
+        ],
+        [
+          172.78399658203125,
+          239.279296875
+        ],
+        [
+          172.78399658203125,
+          251.32147216796875
+        ],
+        [
+          89.05078125,
+          251.32147216796875
+        ]
+      ]
+    },
+    {
+      "title": "Arduino J4 pins",
+      "heading_level": null,
+      "page_id": 25,
+      "polygon": [
+        [
+          88.759765625,
+          507.3314514160156
+        ],
+        [
+          172.78399658203125,
+          507.3314514160156
+        ],
+        [
+          172.78399658203125,
+          519.3314514160156
+        ],
+        [
+          88.759765625,
+          519.3314514160156
+        ]
+      ]
+    },
+    {
+      "title": "Arduino J7 pins",
+      "heading_level": null,
+      "page_id": 26,
+      "polygon": [
+        [
+          88.759765625,
+          93.3271484375
+        ],
+        [
+          172.78399658203125,
+          93.3271484375
+        ],
+        [
+          172.78399658203125,
+          105.761474609375
+        ],
+        [
+          88.759765625,
+          105.761474609375
+        ]
+      ]
+    },
+    {
+      "title": "Arduino SPI pins",
+      "heading_level": null,
+      "page_id": 26,
+      "polygon": [
+        [
+          89.05078125,
+          324.79150390625
+        ],
+        [
+          179.84765625,
+          324.79150390625
+        ],
+        [
+          179.84765625,
+          336.7914733886719
+        ],
+        [
+          89.05078125,
+          336.7914733886719
+        ]
+      ]
+    },
+    {
+      "title": "Shield Analog I/O (Arduino J1)",
+      "heading_level": null,
+      "page_id": 26,
+      "polygon": [
+        [
+          89.05078125,
+          518.4384765625
+        ],
+        [
+          251.4320068359375,
+          518.4384765625
+        ],
+        [
+          251.4320068359375,
+          530.8514709472656
+        ],
+        [
+          89.05078125,
+          530.8514709472656
+        ]
+      ]
+    },
+    {
+      "title": "and Zynq-7000 SoC XADC Dual 12-Bit 1 MSPS Analog-to-Digital Converter\".",
+      "heading_level": null,
+      "page_id": 28,
+      "polygon": [
+        [
+          89.6328125,
+          75.74151611328125
+        ],
+        [
+          476.1015625,
+          75.74151611328125
+        ],
+        [
+          476.1015625,
+          88.3935546875
+        ],
+        [
+          89.6328125,
+          88.3935546875
+        ]
+      ]
+    },
+    {
+      "title": "XADC header J5",
+      "heading_level": null,
+      "page_id": 28,
+      "polygon": [
+        [
+          88.46875,
+          93.761474609375
+        ],
+        [
+          177.86000061035156,
+          93.761474609375
+        ],
+        [
+          177.86000061035156,
+          105.761474609375
+        ],
+        [
+          88.46875,
+          105.761474609375
+        ]
+      ]
+    },
+    {
+      "title": "18 Raspberry Pi Header",
+      "heading_level": null,
+      "page_id": 29,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          320.1171875,
+          79.42291259765625
+        ],
+        [
+          320.1171875,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "19 References",
+      "heading_level": null,
+      "page_id": 30,
+      "polygon": [
+        [
+          90.02399444580078,
+          79.42291259765625
+        ],
+        [
+          226.9921875,
+          79.42291259765625
+        ],
+        [
+          226.9921875,
+          103.42291259765625
+        ],
+        [
+          90.02399444580078,
+          103.42291259765625
+        ]
+      ]
+    },
+    {
+      "title": "Mouser Electronics",
+      "heading_level": null,
+      "page_id": 31,
+      "polygon": [
+        [
+          36.0,
+          39.4031982421875
+        ],
+        [
+          202.04998779296875,
+          39.4031982421875
+        ],
+        [
+          202.04998779296875,
+          57.4031982421875
+        ],
+        [
+          36.0,
+          57.4031982421875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          20
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          38
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "TableOfContents",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          158
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "ListItem",
+          24
+        ],
+        [
+          "SectionHeader",
+          8
+        ],
+        [
+          "ListGroup",
+          6
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          23
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          97
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          59
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          68
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          91
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          96
+        ],
+        [
+          "TableCell",
+          28
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          25
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          84
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "TableCell",
+          16
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 14,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          182
+        ],
+        [
+          "TableCell",
+          59
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 15,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 16,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "TableCell",
+          7
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 17,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          151
+        ],
+        [
+          "TableCell",
+          43
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 18,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          25
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "TableCell",
+          6
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 19,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          81
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "TableCell",
+          16
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 20,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          115
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "TableCell",
+          24
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 21,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 22,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          32
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 23,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          221
+        ],
+        [
+          "TableCell",
+          104
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "Footnote",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 24,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 25,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          207
+        ],
+        [
+          "TableCell",
+          105
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "TableGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 26,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          219
+        ],
+        [
+          "TableCell",
+          92
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "TableGroup",
+          3
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 27,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 28,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          51
+        ],
+        [
+          "TableCell",
+          20
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 29,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          201
+        ],
+        [
+          "TableCell",
+          80
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 30,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 31,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/pynqz2_user_manual_v1_0-1525725"
+}
